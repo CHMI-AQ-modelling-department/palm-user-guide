@@ -1,0 +1,21 @@
+### examples of the configuration file
+
+# dejvice_validation_summer_e1
+basepath = '/storage/data/palm/dejvice/validation/summer_e1'
+origpath = os.path.join(basepath,'model','model_orig','dejvice_880_Jan_17_13_56_49.validation_summer_e1')
+finalpath = os.path.join(basepath,'model')
+
+# dejvice_validation_winter_e3
+basepath = '/storage/data/palm/dejvice/validation/winter_e3'
+origpath = os.path.join(basepath,'model','model_orig')
+finalpath = os.path.join(basepath,'model')
+filelist = ['dejvice_av_xy','dejvice_av_xy_N02','dejvice_xy','dejvice_xy_N02', \
+            'dejvice_pr','dejvice_pr_N02','dejvice_ts','dejvice_ts_N02']
+convention = 'filenum'
+file_suffix = '.nc'
+
+# dejvice_municipality_scen08
+basepath = '/storage/data/palm/dejvice/magistrat'
+origpath = os.path.join(basepath, 'dejvice_1975_Dec_14_21_01_37.scen08_summer')
+finalpath = os.path.join(basepath, 'dejvice_scenarios','scen08_summer')
+output_timestep = 600

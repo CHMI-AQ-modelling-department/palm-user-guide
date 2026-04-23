@@ -1,0 +1,32 @@
+&initialization_parameters
+! Model grid:
+nx = 511,                     ! Number of grid points in x-direction (nx+1 actual)
+ny = 511,                     ! Number of grid points in y-direction (ny+1 actual)
+nz = 512,                     ! Number of grid points in z-direction
+dx = 4.0,                     ! Grid spacing in x-direction (m)
+dy = 4.0,                     ! Grid spacing in y-direction (m)
+dz = 4.0,                     ! Base grid spacing in z-direction (m)
+dz_stretch_level = 128.0,     ! Height (m) above which vertical spacing begins to stretch
+dz_stretch_factor = 1.08,     ! Stretch factor
+dz_max = 8.0,                 ! Maximum vertical grid spacing (m)
+
+! Topography:
+topography = 'read_from_file',
+
+! Initialization:
+initializing_actions = 'set_constant_profiles',
+dt_run_control_1d = 3600.0,
+
+! Boundary conditions:
+bc_lr = 'cyclic',
+bc_ns = 'cyclic'
+
+/
+
+
+&runtime_parameters
+end_time = 3600.0,            ! Total simulation time (s)
+dt_max = 1.0,                 ! Maximum allowed time step (s)
+debug_output = .F.,
+termination_time_needed = 600
+/

@@ -1,0 +1,103 @@
+DROP TABLE IF EXISTS envelope_tmp;
+CREATE TABLE envelope_tmp AS
+SELECT ST_MakeEnvelope(458196, 460244, 5545826, 5547874, 32633) AS geom;
+
+
+
+
+SELECT UpdateRasterSRID('legerova_parent', 'dem', 'rast', 32633);
+
+
+
+
+DELETE FROM legerova_parent.dem
+WHERE NOT ST_Intersects(
+    ST_Transform((SELECT geom FROM envelope_tmp)::geometry, 32633),
+    rast
+);
+
+
+
+
+
+DROP TABLE IF EXISTS legerova_parent.dem_extent;
+
+CREATE TABLE legerova_parent.dem_extent AS
+SELECT
+    ST_Transform(
+        ST_SetSRID(ST_Extent(rast::geometry), 32633),
+        32633
+    ) AS geom
+FROM legerova_parent.dem;
+
+
+
+
+
+
+DROP TABLE IF EXISTS legerova_parent.dem_meta;
+
+CREATE TABLE legerova_parent.dem_meta AS
+SELECT
+    (ST_MetaData(rast)).width  AS width,
+    (ST_MetaData(rast)).height AS height,
+    (ST_MetaData(rast)).scalex AS scalex,
+    (ST_MetaData(rast)).scaley AS scaley,
+    (ST_MetaData(rast)).skewx AS skewx,
+    (ST_MetaData(rast)).skewy AS skewy
+FROM legerova_parent.dem
+LIMIT 1;
+
+
+
+
+
+target_srid = 32633
+
+
+
+
+
+
+DROP TABLE IF EXISTS legerova_parent.dem_preproc;
+
+CREATE TABLE legerova_parent.dem_preproc AS
+WITH
+extent AS (
+    SELECT geom FROM legerova_parent.dem_extent
+),
+meta AS (
+    SELECT * FROM legerova_parent.dem_meta
+),
+tiles AS (
+    SELECT ST_MakeEmptyCoverage(
+        tilewidth  => meta.width,
+        tileheight => meta.height,
+        width      => (ST_XMax(extent.geom) - ST_XMin(extent.geom))::integer,
+        height     => (ST_YMax(extent.geom) - ST_YMin(extent.geom))::integer,
+        upperleftx => ST_XMin(extent.geom),
+        upperlefty => ST_YMax(extent.geom),
+        scalex     => meta.scalex,
+        scaley     => meta.scaley,
+        skewx      => meta.skewx,
+        skewy      => meta.skewy,
+        srid       => 32633
+    ) AS rast
+    FROM extent, meta
+)
+SELECT
+    ROW_NUMBER() OVER (ORDER BY t.rast::geometry) AS rid,
+    ST_Union(
+        ST_Clip(
+            ST_Transform(r.rast, 32633),
+            t.rast::geometry
+        ),
+        'MAX'
+    ) AS rast
+FROM tiles t
+JOIN legerova_parent.dem r
+    ON ST_Transform(t.rast::geometry, 32633) && r.rast
+GROUP BY t.rast;
+
+
+

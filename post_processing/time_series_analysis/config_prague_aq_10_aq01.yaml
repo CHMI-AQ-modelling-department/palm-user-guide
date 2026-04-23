@@ -1,0 +1,56 @@
+user_name: 
+
+date_start: 2023-10-06 00:00:00
+date_end:   2023-10-07 00:00:00
+
+
+#cams_file: '/storage/home/gunes/data/palmtools/palmmeteo-2.6-old/data/CAMS/cams_july/merged_cams_july_profile.nc'
+
+variables: ['PM10b', 'NOx', 'PM10']
+
+variable_names:
+  palm:
+    NOx: kc_NOXt
+    PM10: kc_PM10t
+
+units_conversion:
+  palm:
+    NOx: 1880.0
+
+
+variable_colors:
+  PM10: blue
+  PM10b: red
+  NOx: green
+    
+palm:
+    prague_aq_10_aq01:
+        type: 'mask'
+        dz: 2.0
+        palm_file: '/storage/home/gunes/data/palmtools/prague_aq_10_aq01/JOIN/prague_aq_10_aq01_av_masked_M001.nc'
+        case_name: 'Prague AQ 01'
+        ls: '-'
+        color: 'red'
+
+#observation_file_sensor: '/storage/home/gunes/data/palmtools/observation_data/TURBAN_SENSORS_corrected_dataset_COMPLETE_06-2022-03-2023_FINAL_COR1_add_station_NOx.csv'
+observation_file_aim: '/storage/home/gunes/data/palmtools/observation_data/AIM-Praha_2023.csv'
+observation_metadata: '/storage/home/gunes/data/palmtools/observation_data/TURBAN_ALL_MEASUREMENTS_COORD_v2_pass.csv'
+
+
+# specification of what we would like to plot
+# all possible observation points are listed in default_config.yaml
+obs_loop:
+    obs1:
+        # those sensors provide information and location for PALM comparison
+        #  there can be multiple of them
+        #  PALM label: palm.case_name + 'in' + station name in cause of multiple PALM locations
+        main_obs: ['aim2']
+        # from those sensors only information is taken
+        # e.g. plot reference AIM information in similar location, plot Passive monthly information, sensor across the street etc ...
+        adjacent_obs: []
+        
+        
+
+plotting:
+    path: prague_aq_10
+    show_plots: False

@@ -1,0 +1,965 @@
+user_name: user
+
+date_start: 2022-07-17 00:00:00
+date_end:   2022-07-20 00:00:00
+
+# General location of measuring stations
+latitude:  50.073658
+longitude: 14.418540
+
+# Coordinates for transformation WGS lat lon -> PALM x,y
+srid_palm: 32633
+srid_wgs84: 4326
+
+# Level to take from CAMS, default 0, ground layer
+cams_level: 0
+
+# max accepted distance, if higher, skip this point
+dist: 100.0 # m
+
+# interval for averaging, default is to do Averaging
+avg_interval: 3600.0 # 1hour
+palm_average: True
+
+# File locations
+cams_file: ''
+observation_file_sensor: '/storage/data/aq/TURBAN/TURBAN_SENSORS_corrected_dataset_COMPLETE_06-2022-03-2023_FINAL_COR1_add_station_NOx.csv'
+observation_file_aim: '/storage/data/aq/AIM/AIM_Prg_2019-01-01_now_verif/AIM_Pha_StC_2022_verif_mat2_fullTS_utf8.csv'
+observation_metadata: '/storage/data/aq/TURBAN/TURBAN_ALL_MEASUREMENTS_COORD_v2_pass.csv'
+
+# all possible variables, PM10b must go with PM10
+variables: ['PM10b', 'NOx', 'NO', 'NO2', 'PM10', 'PM25', 'PM10-2.5', 'PM10sp']
+
+variables: ['NOx', 'NO', 'NO2', 'PM10', 'PM25', 'PM10sp', 'PM10all', 'PM10b', 'e', 'tke', 'tke_res', 'ws']
+# Palm configuration
+palm:
+    palm1:
+        type: 'unknown'
+        dz: 2.0
+        palm_file: ''
+        case_name: 'will be in legend'
+
+# list of all possible observation points
+# id -> refers to id in .csv file from CHMU
+# case_name -> name that goes to legend in plot
+# type -> to specify type of measurement station
+# NOTE: some station has values only for certain dates
+observation:
+    aim2:
+        id: 'ABREA'
+        case_name: 'Praha 6 Brevnov, AIM'
+        type: 'aim'
+        ji_loc:
+            legerovas_parent: [ 439, 47 ]
+
+#    aim3:
+#        id: 'ABREA'
+#        case_name: ''
+#        type: 'aim'
+    aim4:
+        id: 'ACHOA'
+        case_name: 'Praha 4-Chodov, AIM'
+        type: 'aim'
+    aim5:
+        id: 'AHOLA'
+        case_name: 'Praha 7-Holesovice, AIM'
+        type: 'aim'
+        ji_loc:
+            legerovas_parent: [ 708, 503 ]
+    aim6:
+        id: 'AKALA'
+        case_name: 'Praha 8-Karlin, AIM'
+        type: 'aim'
+        ji_loc:
+            legerovas_parent: [ 545, 491 ]
+    aim7:
+        id: 'AKOBA'
+        case_name: 'Praha 8-Kobylisy, AIM'
+        type: 'aim'
+    aim8:
+        id: 'ALEG2'
+        case_name: 'Praha 2-Legerova, AIM'
+        type: 'aim'
+        ji_loc:
+            legerovas_child: [ 317, 329 ]
+            legerovas_parent: [ 303, 407 ]
+    aim9:
+        id: 'ALEGA'
+        case_name: 'Praha 2-Legerova, AIM'
+        type: 'aim'
+        ji_loc:
+            legerovas_child: [ 317, 329 ]
+            legerovas_parent: [ 303, 407 ]
+    aim10:
+        id: 'ALERA'
+        case_name: 'Letiste Praha, AIM'
+        type: 'aim'
+    aim11:
+        id: 'ALIBA'
+        case_name: 'Praha 4-Libus, AIM'
+        type: 'aim'
+    aim12:
+        id: 'APRUA'
+        case_name: 'Praha 10-Prumyslova, AIM'
+        type: 'aim'
+    aim13:
+        id: 'AREPA'
+        case_name: 'Praha 1-n. Republiky, AIM'
+        type: 'aim'
+        ji_loc:
+            legerovas_parent: [ 477, 398 ]
+    aim14:
+        id: 'ARERA'
+        case_name: 'Praha 5-Reporyje, AIM'
+        type: 'aim'
+    aim15:
+        id: 'ARIEA'
+        case_name: 'Praha 2-Riegrovy sady, AIM'
+        type: 'aim'
+        ji_loc:
+            legerovas_parent: [ 403, 494 ]
+    aim16:
+        id: 'ASMIA'
+        case_name: 'Praha 5-Smichov, AIM'
+        type: 'aim'
+        ji_loc:
+            legerovas_parent: [ 313, 175 ]
+    aim17:
+        id: 'ASROA'
+        case_name: 'Praha 10-Srobarova, AIM'
+        type: 'aim'
+        ji_loc:
+            legerovas_parent: [ 331, 708 ]
+    aim18:
+        id: 'ASTOA'
+        case_name: 'Praha 5-Stodulky, AIM'
+        type: 'aim'
+    aim19:
+        id: 'ASUCA'
+        case_name: 'Praha 6-Suchdol, AIM'
+        type: 'aim'
+    aim20:
+        id: 'AVRSA'
+        case_name: 'Praha 10-Vrsovice, AIM'
+        type: 'aim'
+        ji_loc:
+            legerovas_parent: [ 263, 518 ]
+    aim21:
+        id: 'AVYNA'
+        case_name: 'Praha 9-Vysocany, AIM'
+        type: 'aim'
+    aim22:
+        id: 'SBERA'
+        case_name: 'Beroun, AIM'
+        type: 'aim'
+    aim23:
+        id: 'SKHOA'
+        case_name: 'Kutna Hora-Orebitska, AIM'
+        type: 'aim'
+    aim24:
+        id: 'SKLMA'
+        case_name: 'Kladno-stred mesta, AIM'
+        type: 'aim'
+    aim25:
+        id: 'SKLSA'
+        case_name: 'Kladno-Svermov, AIM'
+        type: 'aim'
+    aim26:
+        id: 'SKOAA'
+        case_name: 'Kolin SAZ, AIM'
+        type: 'aim'
+    aim27:
+        id: 'SKRPA'
+        case_name: 'Kralupy nad Vltavou-sportoviste, AIM'
+        type: 'aim'
+    aim28:
+        id: 'SMBOA'
+        case_name: 'Mlada Boleslav, AIM'
+        type: 'aim'
+    aim29:
+        id: 'SONRA'
+        case_name: 'Ondrejov, AIM'
+        type: 'aim'
+    aim30:
+        id: 'SPBRA'
+        case_name: 'Pribram-Brezové Hory, AIM'
+        type: 'aim'
+    aim31:
+        id: 'SRORA'
+        case_name: 'Rozdalovice-Ruska, AIM'
+        type: 'aim'
+    aim32:
+        id: 'STCSA'
+        case_name: 'Tobolka-Certovy schody, AIM'
+        type: 'aim'
+
+
+#observation_working:
+    senzor1:
+        id: 'CHMU-21-001'
+        case_name: 'Senzor 1'
+        id2: 'S2_COR1'
+        type: 'sensor'
+        ji_loc:
+            legerovas_child: [ 315, 329 ]
+            legerovas_parent: [ 303, 407 ]
+    
+    senzor2:
+        id: 'CHMU-21-002'
+        case_name: 'Senzor 2, Lower'
+        id2: 'S2_COR1'
+        type: 'sensor'
+        ji_loc:
+            legerovas_child: [ 175, 331 ]
+            legerovas_parent: [ 275, 408 ]
+        
+    senzor3:
+        id: 'CHMU-21-003'
+        case_name: 'Senzor 3'
+        id2: 'S3_COR1'
+        type: 'sensor'
+        ji_loc:
+            legerovas_child: [ 138, 226 ]
+            legerovas_parent: [ 267, 387 ]
+        
+    senzor4:
+        id: 'CHMU-21-004'
+        case_name: 'Senzor 4'
+        id2: 'S4_COR1'
+        type: 'sensor'
+        ji_loc:
+            legerovas_child: [ 315, 329 ]
+            legerovas_parent: [ 303, 407 ]
+        
+    senzor5:
+        id: 'CHMU-21-005'
+        case_name: 'Senzor 5, Upper'
+        id2: 'S5_COR1'
+        type: 'sensor'
+        ji_loc:
+            legerovas_child: [ 175, 331 ]
+            legerovas_parent: [ 275, 408 ]
+#
+#    senzor6:
+#        id: 'CHMU-21-006'
+#        case_name: 'Senzor 6'
+#        id2: 'S6_COR1'
+#        type: 'sensor'
+    
+    senzor7:
+        id: 'CHMU-21-007'
+        case_name: 'Senzor 7, Upper'
+        id2: 'S7_COR1'
+        type: 'sensor'
+        ji_loc:
+            legerovas_child: [ 172, 318 ]
+            legerovas_parent: [ 274, 405 ]
+        
+#    senzor8:
+#        id: 'CHMU-21-008'
+#        case_name: 'Senzor 8, Upper'
+#        id2: 'S8_COR1'
+#    ji_loc:
+#        legerovas_child: [ ]
+#        legerovas_parent: [ ]
+    
+    senzor9:
+        id: 'CHMU-21-009'
+        case_name: 'Senzor 9, Lower'
+        id2: 'S9_COR1'
+        type: 'sensor'
+        ji_loc:
+            legerovas_child: [ 172, 318 ]
+            legerovas_parent: [ 274, 405 ]
+        
+    senzor10:
+        id: 'CHMU-21-010'
+        case_name: 'Senzor 10, Upper'
+        id2: 'S10_COR1'
+        type: 'sensor'
+        ji_loc:
+            legerovas_child: [391, 275]
+            legerovas_parent: [ 318, 397 ]
+
+    senzor11:
+        id: 'CHMU-21-011'
+        case_name: 'Senzor 11, Lower'
+        id2: 'S11_COR1'
+        type: 'sensor'
+        ji_loc:
+            legerovas_child: [391, 275]
+            legerovas_parent: [ 318, 397 ]
+
+    senzor12:
+        id: 'CHMU-21-012'
+        case_name: 'Senzor 12, Lower'
+        id2: 'S12_COR1'
+        type: 'sensor'
+        ji_loc:
+            legerovas_child: [ 170, 292 ]
+            legerovas_parent: [ 274, 400 ]
+            
+    senzor13:
+        id: 'CHMU-21-013'
+        case_name: 'Senzor 13, Upper'
+        id2: 'S13_COR1'
+        type: 'sensor'
+        ji_loc:
+            legerovas_child: [385, 307]
+            legerovas_parent: [ 317, 403 ]
+
+    senzor14:
+        id: 'CHMU-21-014'
+        case_name: 'Senzor 14, Lower'
+        id2: 'S14_COR1'
+        type: 'sensor'
+        ji_loc:
+            legerovas_child: [ 377, 315 ]
+            legerovas_parent: [ 315, 405 ]
+        
+    senzor15:
+        id: 'CHMU-21-015'
+        case_name: 'Senzor 15, Upper'
+        id2: 'S15_COR1'
+        type: 'sensor'
+        ji_loc:
+            legerovas_child: [ 377, 315 ]
+            legerovas_parent: [ 315, 405 ]
+        
+    senzor16:
+        id: 'CHMU-21-016'
+        case_name: 'Senzor 16, Roof'
+        id2: 'S16_COR1'
+        type: 'sensor'
+        ji_loc:
+            legerovas_child: [ 175, 466 ]
+            legerovas_parent: [ 274, 435 ]
+        
+#    senzor17:
+#        id: 'CHMU-21-017'
+#        case_name: 'Senzor 17'
+#        id2: 'S17_COR1'
+#        type: 'sensor'
+    
+    senzor18:
+        id: 'CHMU-21-018'
+        case_name: 'Senzor 18, Upper'
+        id2: 'S18_COR1'
+        type: 'sensor'
+        ji_loc:
+            legerovas_child: [ 170, 292 ]
+            legerovas_parent: [ 274, 400 ]
+        
+    senzor19:
+        id: 'CHMU-21-009'
+        case_name: 'Senzor 19'
+        id2: 'S19_COR1'
+        type: 'sensor'
+        ji_loc:
+            legerovas_child: [ 302, 262 ]
+            legerovas_parent: [ 300, 394 ]
+        
+    senzor20:
+        id: 'CHMU-21-020'
+        case_name: 'Senzor 20, Lower'
+        id2: 'S20_COR1'
+        type: 'sensor'
+        ji_loc:
+            legerovas_child: [ 385, 307 ]
+            legerovas_parent: [ 317, 403 ]
+   
+        
+#observation_passive:
+    pass_samp1:
+        id: 'pass_samp1'
+        case_name: 'Plzeňská 38a, Prague, PASSIVE'
+        type: 'pass_samp'
+        ji_loc:
+            legerovas_parent: [ 305, 151 ]
+    pass_samp2:
+        id: 'pass_samp2'
+        case_name: 'Sokolská/Ječná , Prague, PASSIVE'
+        type: 'pass_samp'
+        ji_loc:
+            legerovas_child: [488, 263]
+            legerovas_parent: [ 337, 394 ]
+    pass_samp3:
+        id: 'pass_samp3'
+        case_name: 'Radlická / Klicperova, Prague, PASSIVE'
+        type: 'pass_samp'
+        ji_loc:
+            legerovas_parent: [ 272, 199 ]
+    pass_samp4:
+        id: 'pass_samp4'
+        case_name: 'Rumunská / Legerova, Prague, PASSIVE'
+        type: 'pass_samp'
+        ji_loc:
+            legerovas_child: [440, 315]
+            legerovas_parent: [ 328, 405 ]
+    pass_samp5:
+        id: 'pass_samp5'
+        case_name: 'Ječná / Štěpánská, Prague, PASSIVE'
+        type: 'pass_samp'
+        ji_loc:
+            legerovas_child: [496, 79]
+            legerovas_parent: [ 339, 357 ]
+    pass_samp6:
+        id: 'pass_samp6'
+        case_name: 'Na pískách / Evropská, Prague, PASSIVE'
+        type: 'pass_samp'
+    pass_samp7:
+        id: 'pass_samp7'
+        case_name: 'V Botanice 4 (KÚ), Prague, PASSIVE'
+        type: 'pass_samp'
+        ji_loc:
+            legerovas_parent: [ 232, 336 ]
+    pass_samp8:
+        id: 'pass_samp8'
+        case_name: 'J.Želivského / Biskupcova, PASSIVE'
+        type: 'pass_samp'
+        ji_loc:
+            legerovas_parent: [ 490, 679 ]
+    pass_samp9:
+        id: 'pass_samp9'
+        case_name: 'Veletržní/Sochařská, Prague, PASSIVE'
+        type: 'pass_samp'
+        ji_loc:
+            legerovas_parent: [ 617, 365 ]
+    pass_samp10:
+        id: 'pass_samp10'
+        case_name: 'V Holešovičkách 8/10, Prague, PASSIVE'
+        type: 'pass_samp'
+    pass_samp11:
+        id: 'pass_samp11'
+        case_name: 'Patočkova / Malovanka, PASSIVE'
+        type: 'pass_samp'
+        ji_loc:
+            legerovas_parent: [ 474, 42 ]
+    pass_samp12:
+        id: 'pass_samp12'
+        case_name: 'Florenc (bus stop), Prague, PASSIVE'
+        type: 'pass_samp'
+        ji_loc:
+            legerovas_parent: [ 499, 474 ]
+    pass_samp13:
+        id: 'pass_samp13'
+        case_name: 'Křižovnická, PASSIVE'
+        type: 'pass_samp'
+        ji_loc:
+            legerovas_parent: [ 481, 300 ]
+    pass_samp14:
+        id: 'pass_samp14'
+        case_name: 'Spořilov, Prague, PASSIVE'
+        type: 'pass_samp'
+        ji_loc:
+            legerovas_parent: [ 40, 769 ]
+    pass_samp15:
+        id: 'pass_samp15'
+        case_name: 'Flora-mall (bus stop), Prague, PASSIVE'
+        type: 'pass_samp'
+        ji_loc:
+            legerovas_parent: [ 362, 625 ]
+    pass_samp16:
+        id: 'pass_samp16'
+        case_name: 'Kafkova / Svatovítská, Prague, PASSIVE'
+        type: 'pass_samp'
+        ji_loc:
+            legerovas_parent: [ 600, 159 ]
+    pass_samp17:
+        id: 'pass_samp17'
+        case_name: 'Bělocerkevská (bus stop), Prague, PASSIVE'
+        type: 'pass_samp'
+    pass_samp18:
+        id: 'pass_samp18'
+        case_name: '5. května / Na Veselí , Prague, PASSIVE'
+        type: 'pass_samp'
+        ji_loc:
+            legerovas_parent: [ 108, 463 ]
+    pass_samp19:
+        id: 'pass_samp19'
+        case_name: 'Českomoravská Balabenka, PASSIVE'
+        type: 'pass_samp'
+        ji_loc:
+            legerovas_parent: [ 658, 778 ]
+    pass_samp20:
+        id: 'pass_samp20'
+        case_name: 'Argentinská / Dělnická, PASSIVE'
+        type: 'pass_samp'
+        ji_loc:
+            legerovas_parent: [ 644, 500 ]
+
+# Configurable datetime formats
+datetime_formats:
+    sensor: '%m/%d/%Y %H:%M:%S'
+    aim: '%d.%m.%Y %H:%M'
+    palm: '%Y-%m-%d %H:%M:%S +00'
+
+# Name of the variables for loading from files
+variable_names:
+    sensor:
+        'NO': 'NO_'
+        NO2:  'NO2_'
+        PM25: 'PM2_5_'
+        PM10: 'PM10_'
+        O3:   'O3_'
+        PM10b: 'PM10_'
+        PM10sp: 'PM10_'
+        PM10all: 'PM10_'
+    aim:
+        'NO': 'NO'
+        NO2:  'NO2'
+        PM25: 'PM2_5'
+        PM10: 'PM10'
+        O3:   'O3'
+        NOx:  'NOx'
+        PM10b: 'PM10'
+        PM10sp: 'PM10'
+        PM10all: 'PM10'
+    palm:
+        'NO': 'kc_NO'
+        NO2:  'kc_NO2'
+        PM25: 'kc_PM25'
+        PM10: 'kc_PM10'
+        O3:   'kc_O3'
+        NOx:  'kc_NOx'
+        PM10b: 'kc_PM10b'
+        PM10all: 'PM10'
+    passive:
+        'NO': 'NO'
+        NO2:  'NO2'
+        PM25: 'PM25'
+        PM10: 'PM10'
+        O3:   'O3'
+        PM10b: 'PM10'
+        PM10sp: 'PM10'
+        PM10all: 'PM10'
+    cams:
+        'NO': 'no_conc'
+        NO2:  'no2_conc'
+        PM25: 'pm2p5_conc'
+        PM10: 'pm10_conc'
+        O3:   'o3_conc'
+        PM10b: 'pm10_conc'
+        PM10sp: 'pm10_conc'
+        PM10all: 'pm10_conc'
+
+# conversion factor for chemical species
+units_conversion:
+    sensor:
+        'NO':   1.0       # ppb
+        NO2:    1.0       # ppb
+        PM25:   1.0       # ug / m3
+        PM10:   1.0       # ug / m3
+        O3:     1.0       # ppb
+        PM10b:  1.0
+        PM10sp: 1.0
+        PM10all: 1.0
+    aim:
+        'NO':   1.0     # ppb
+        NO2:    1.0     # ppb
+        PM25:   1.0     # ug / m3
+        PM10:   1.0     # ug / m3
+        O3:     1.0     # ppb
+        NOx:    1.0     # ppb
+        PM10b:  1.0
+        PM10sp: 1.0
+        PM10all: 1.0
+    palm:
+        'NO': 1000.0      # ppm -> ppb
+        NO2:  1000.0      # ppm -> ppb
+        PM25: 1000000000  # kg/m3 -> ug / m3
+        PM10: 1000000000  # kg/m3 -> ug / m3
+        O3:   1000.0      # ppm -> ppb
+        NOx:  1.0         # ppb
+        PM10b: 1000000000
+        PM10sp: 1000000000
+        PM10all: 1.0
+    passive:
+        'NO':   0.8012  # ug / m3 -> ppb
+        NO2:    0.5228  # ug / m3 -> ppb
+        PM25:   1.0     # ug / m3
+        PM10:   1.0     # ug / m3
+        O3:     0.5010  # ug / m3 -> ppb
+        PM10b:  1.0
+        PM10sp: 1.0
+    cams:
+        'NO': 0.8012   # ug / m3 -> ppb
+        NO2:  0.5228   # ug / m3 -> ppb
+        PM25: 1.0      # ug / m3
+        PM10: 1.0      # ug / m3
+        O3:   0.5010  # ug / m3 -> ppb
+        PM10b: 1.0
+        PM10sp: 1.0
+        PM10all: 1.0
+
+# plotting configuration
+plotting:
+    path: plots_first_test
+    show_plots: True
+    leg_cols: 2
+    hourlocator: 6
+    sunrise_sunset: True
+    var_labels:
+        'NO': 'NO / ppb' #$\mathrm{\mu g\,m}^{-3}$'
+        NO2:  'NO2 / ppb' # $\mathrm{\mu g\,m}^{-3}$'
+        PM10: 'PM10 / $\mathrm{\mu g\,m}^{-3}$'
+        PM25: 'PM2.5 / $\mathrm{\mu g\,m}^{-3}$'
+        PM1:  'PM1.0 / $\mathrm{\mu g\,m}^{-3}$'
+        O3:  'O3 / ppb' # $\mathrm{\mu g\,m}^{-3}$'
+        NOx: 'NOX / ppb' # / $\mathrm{\mu g\,m}^{-3}$'
+        PM10b: 'PM10 (PM10b) / $\mathrm{\mu g\,m}^{-3}$'
+        PM10-2.5: 'PM10 - PM2.5 / $\mathrm{\mu g\,m}^{-3}$'
+        PM10sp: 'PM10 - PM10sp / $\mathrm{\mu g\,m}^{-3}$'
+        PM10all: 'PM10 / $\mathrm{\mu g\,m}^{-3}$'
+        e: 'e [$\mathrm{m^{2} \, s^{-2}}$]'
+        tke: 'TKE [$\mathrm{m^{2} \, s^{-2}}$]'
+        tke_res: 'TKE resolved [$\mathrm{m^{2} \, s^{-2}}$]'
+        ws: 'WS [$\mathrm{m \, s^{-1}}$]'
+        
+    ylims:
+        'NO': 150.0
+        NO2: 120.0
+        NOx: 150.0
+        PM10: 50.0
+        PM25: 125.0
+        PM10b: 125.0
+        PM10-2.5: 125.0
+        O3: 100.0
+        PM1: 100.0
+        PM10sp: 100.0
+        PM10all: 100.0
+        e: 0.2
+        tke: 1.0
+        tke_res: 1.0
+        ws: 2.0
+        
+
+obs_loop:
+    aim9:
+        main_obs: [ 'aim9' ]
+#        palm_cl: ['red', 'blue', 'green', 'yellow']
+#        palm_ls: [ ':', ':']
+        adjacent_obs: [ ]
+        
+    obs14:
+        main_obs: [ 'senzor14' ]
+        adjacent_obs: [ ] #'senzor3', 'aim2', 'pass_samp1']
+    obs15:
+        main_obs: [ 'senzor15' ]
+        adjacent_obs: [ ] #'senzor3', 'aim2', 'pass_samp1']
+
+#    aims_comparison:
+#        main_obs: ['aim9', 'senzor4']
+#        palm_ls: ['-', '--']
+#        adjacent_obs: []
+
+#    aims_comparison_15_10:
+#        main_obs: ['senzor15', 'senzor10' ]
+#        palm_ls: [ ':', ':']
+#        palm_cl: ['red', 'green']
+#        adjacent_obs: [ ]
+#
+#    aims_comparison_14_11:
+#        main_obs: ['senzor14', 'senzor11' ]
+#        palm_ls: [ ':', ':']
+#        palm_cl: ['red', 'green']
+#        adjacent_obs: [ ]
+#
+#    aims_comparison_14_15:
+#        main_obs: ['senzor14', 'senzor15' ]
+#        palm_ls: [ ':', ':']
+#        palm_cl: ['red', 'green']
+#        adjacent_obs: [ ]
+#
+#    aims_comparison_10_11:
+#        main_obs: ['senzor10', 'senzor11' ]
+#        palm_ls: [ ':', ':']
+#        palm_cl: ['red', 'green']
+#        adjacent_obs: [ ]
+#
+#    aims_comparison_2_9:
+#        main_obs: ['senzor2', 'senzor9' ]
+#        palm_ls: [ ':', ':']
+#        palm_cl: ['red', 'green']
+#        adjacent_obs: []
+#
+#    aims_comparison_5_7:
+#        main_obs: [ 'senzor5', 'senzor7' ]
+#        palm_ls: [ ':', ':']
+#        palm_cl: ['red', 'green']
+#        adjacent_obs: []
+#
+#    aims_comparison_9_7:
+#        main_obs: [ 'senzor9', 'senzor7' ]
+#        palm_ls: [ ':', ':']
+#        palm_cl: ['red', 'green']
+#        adjacent_obs: []
+#
+#    aims_comparison_2_5:
+#        main_obs: [ 'senzor2', 'senzor5' ]
+#        palm_ls: [ ':', ':']
+#        palm_cl: ['red', 'green']
+#        adjacent_obs: [ ]
+#
+#    aims_comparison_12_2:
+#        main_obs: [ 'senzor12', 'senzor2' ]
+#        palm_ls: [ ':', ':' ]
+#        palm_cl: [ 'red', 'green' ]
+#        adjacent_obs: [ ]
+#
+#    aims_comparison_18_5:
+#        main_obs: [ 'senzor18', 'senzor5' ]
+#        palm_ls: [ ':', ':' ]
+#        palm_cl: [ 'red', 'green' ]
+#        adjacent_obs: [ ]
+#
+#    aims_comparison_8_5:
+#        main_obs: [ 'senzor8', 'senzor5' ]
+#        palm_ls: [ ':', ':' ]
+#        palm_cl: [ 'red', 'green' ]
+#        adjacent_obs: [ ]
+
+
+
+
+
+#        [ '-', '--', '-.' ]
+#obs_loop1:
+#    aims_comparison:
+#        main_obs: ['aim9', 'senzor4']
+#        adjacent_obs: []
+#    aa_obs_senzor11_10:
+#        main_obs: ['senzor11', 'senzor10']
+#        adjacent_obs: []
+#    aa_obs_senzor20_13:
+#        main_obs: [ 'senzor20', 'senzor13' ]
+#        adjacent_obs: [ ]
+#    aa_obs_senzor14_15:
+#        main_obs: [ 'senzor14', 'senzor15' ]
+#        adjacent_obs: [ ]
+#    aa_obs_senzor1_4:
+#        main_obs: [ 'senzor1', 'senzor4' ]
+#        adjacent_obs: [ ]
+#    aa_obs_senzor12_18:
+#        main_obs: [ 'senzor12', 'senzor18' ]
+#        adjacent_obs: [ ]
+#    aa_obs_senzor9_7:
+#        main_obs: [ 'senzor9', 'senzor7' ]
+#        adjacent_obs: [ ]
+#    aa_obs_senzor2_5:
+#        main_obs: [ 'senzor2', 'senzor5' ]
+#        adjacent_obs: [ ]
+#    aa_obs_senzor3_16:
+#        main_obs: [ 'senzor3', 'senzor16' ]
+#        adjacent_obs: [ ]
+
+    obs1:
+        main_obs: ['senzor1']
+        adjacent_obs: [] #'senzor3', 'aim2', 'pass_samp1']
+    obs2:
+        main_obs: ['senzor2']
+        adjacent_obs: [ ] #'senzor3', 'aim2', 'pass_samp1']
+    obs3:
+        main_obs: ['senzor3']
+        adjacent_obs: [ ] #'senzor3', 'aim2', 'pass_samp1']
+    obs4:
+        main_obs: ['senzor4']
+        adjacent_obs: [ ] #'senzor3', 'aim2', 'pass_samp1']
+    obs5:
+        main_obs: ['senzor5']
+        adjacent_obs: [ ] #'senzor3', 'aim2', 'pass_samp1']
+#    obs6:
+#        main_obs: [senzor6'
+#]        adjacent_obs: [ ] #'senzor3', 'aim2', 'pass_samp1']
+    obs7:
+        main_obs: ['senzor7']
+        adjacent_obs: [ ] #'senzor3', 'aim2', 'pass_samp1']
+#    obs8:
+#        main_obs: [senzor8'
+#]        adjacent_obs: [ ] #'senzor3', 'aim2', 'pass_samp1']
+    obs9:
+        main_obs: ['senzor9']
+        adjacent_obs: [] #'senzor3', 'aim2', 'pass_samp1']
+    obs10:
+        main_obs: ['senzor10']
+        adjacent_obs: [ ] #'senzor3', 'aim2', 'pass_samp1']
+    obs11:
+        main_obs: ['senzor11']
+        adjacent_obs: [ ] #'senzor3', 'aim2', 'pass_samp1']
+    obs12:
+        main_obs: ['senzor12']
+        adjacent_obs: [ ] #'senzor3', 'aim2', 'pass_samp1']
+    obs13:
+        main_obs: ['senzor13']
+        adjacent_obs: [ ] #'senzor3', 'aim2', 'pass_samp1']
+    obs14:
+        main_obs: ['senzor14']
+        adjacent_obs: [ ] #'senzor3', 'aim2', 'pass_samp1']
+    obs15:
+        main_obs: ['senzor15']
+        adjacent_obs: [ ] #'senzor3', 'aim2', 'pass_samp1']
+    obs16:
+        main_obs: ['senzor16']
+        adjacent_obs: [ ] #'senzor3', 'aim2', 'pass_samp1']
+#    obs17:
+#        main_obs: [senzor17'
+#        adjacent_obs: [ ] #'senzor3', 'aim2', 'pass_samp1']
+    obs18:
+        main_obs: ['senzor18']
+        adjacent_obs: [ ] #'senzor3', 'aim2', 'pass_samp1']
+    obs19:
+        main_obs: ['senzor19']
+        adjacent_obs: [ ] #'senzor3', 'aim2', 'pass_samp1']
+    obs20:
+        main_obs: ['senzor20']
+        adjacent_obs: [ ] #'senzor3', 'aim2', 'pass_samp1']
+#    aim2:
+#        main_obs: ['aim2']
+#        adjacent_obs: [ ]
+#    aim4:
+#        main_obs: [ 'aim4']
+#        adjacent_obs: [ ]
+#    aim5:
+#        main_obs: ['aim5']
+#        adjacent_obs: [ ]
+#    aim6:
+#        main_obs: ['aim6']
+#        adjacent_obs: [ ]
+#    aim7:
+#        main_obs: ['aim7']
+#        adjacent_obs: [ ]
+#    aim8:
+#        main_obs: ['aim8']
+#        adjacent_obs: [ ]
+#    aim9:
+#        main_obs: ['aim9']
+#        adjacent_obs: [ ]
+#    aim10:
+#        main_obs: ['aim10']
+#        adjacent_obs: [ ]
+#    aim11:
+#        main_obs: ['aim11']
+#        adjacent_obs: [ ]
+#    aim12:
+#        main_obs: ['aim12']
+#        adjacent_obs: [ ]
+#    aim13:
+#        main_obs: ['aim13']
+#        adjacent_obs: [ ]
+#    aim14:
+#        main_obs: ['aim14']
+#        adjacent_obs: [ ]
+#    aim15:
+#        main_obs: ['aim15']
+#        adjacent_obs: [ ]
+#    aim16:
+#        main_obs: ['aim16']
+#        adjacent_obs: [ ]
+#    aim17:
+#        main_obs: ['aim17']
+#        adjacent_obs: [ ]
+#    aim18:
+#        main_obs: ['aim18']
+#        adjacent_obs: [ ]
+#    aim19:
+#        main_obs: ['aim19']
+#        adjacent_obs: [ ]
+#    aim20:
+#        main_obs: ['aim20']
+#        adjacent_obs: [ ]
+#    aim21:
+#        main_obs: ['aim21']
+#        adjacent_obs: [ ]
+#    aim22:
+#        main_obs: ['aim22']
+#        adjacent_obs: [ ]
+#    aim23:
+#        main_obs: ['aim23']
+#        adjacent_obs: [ ]
+#    aim24:
+#        main_obs: ['aim24']
+#        adjacent_obs: [ ]
+#    aim25:
+#        main_obs: ['aim25']
+#        adjacent_obs: [ ]
+#    aim26:
+#        main_obs: ['aim26']
+#        adjacent_obs: [ ]
+#    aim27:
+#        main_obs: ['aim27']
+#        adjacent_obs: [ ]
+#    aim28:
+#        main_obs: ['aim28']
+#        adjacent_obs: [ ]
+#    aim29:
+#        main_obs: ['aim29']
+#        adjacent_obs: [ ]
+#    aim30:
+#        main_obs: ['aim30']
+#        adjacent_obs: [ ]
+#    aim31:
+#        main_obs: ['aim31']
+#        adjacent_obs: [ ]
+#    aim32:
+#        main_obs: ['aim32']
+#        adjacent_obs: [ ]
+#    pass_samp1:
+#        main_obs: ['pass_samp1']
+#        adjacent_obs: [ ]
+#    pass_samp2:
+#        main_obs: ['pass_samp2']
+#        adjacent_obs: [ ]
+#    pass_samp3:
+#        main_obs: ['pass_samp3']
+#        adjacent_obs: [ ]
+#    pass_samp4:
+#        main_obs: ['pass_samp4']
+#        adjacent_obs: [ ]
+#    pass_samp5:
+#        main_obs: ['pass_samp5']
+#        adjacent_obs: [ ]
+#    pass_samp6:
+#        main_obs: ['pass_samp6']
+#        adjacent_obs: [ ]
+#    pass_samp7:
+#        main_obs: ['pass_samp7']
+#        adjacent_obs: [ ]
+#    pass_samp8:
+#        main_obs: ['pass_samp8']
+#        adjacent_obs: [ ]
+#    pass_samp9:
+#        main_obs: ['pass_samp9']
+#        adjacent_obs: [ ]
+#    pass_samp10:
+#        main_obs: ['pass_samp10']
+#        adjacent_obs: [ ]
+#    pass_samp11:
+#        main_obs: ['pass_samp11']
+#        adjacent_obs: [ ]
+#    pass_samp12:
+#        main_obs: ['pass_samp12']
+#        adjacent_obs: [ ]
+#    pass_samp13:
+#        main_obs: ['pass_samp13']
+#        adjacent_obs: [ ]
+#    pass_samp14:
+#        main_obs: ['pass_samp14']
+#        adjacent_obs: [ ]
+#    pass_samp15:
+#        main_obs: ['pass_samp15']
+#        adjacent_obs: [ ]
+#    pass_samp16:
+#        main_obs: ['pass_samp16']
+#        adjacent_obs: [ ]
+#    pass_samp17:
+#        main_obs: ['pass_samp17']
+#        adjacent_obs: [ ]
+#    pass_samp18:
+#        main_obs: ['pass_samp18']
+#        adjacent_obs: [ ]
+#    pass_samp19:
+#        main_obs: ['pass_samp19']
+#        adjacent_obs: [ ]
+#    pass_samp20:
+#        main_obs: ['pass_samp20']
+#        adjacent_obs: [ ]

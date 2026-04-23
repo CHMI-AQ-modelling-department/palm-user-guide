@@ -1,0 +1,39 @@
+# Copyright 2018-2024 Institute of Computer Science of the Czech Academy of
+# Sciences, Prague, Czech Republic. Authors: Martin Bures, Jaroslav Resler.
+#
+# This file is part of PALM-GeM.
+#
+# PALM-GeM is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later
+# version.
+#
+# PALM-GeM is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+# A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# PALM-GeM. If not, see <https://www.gnu.org/licenses/>.
+
+pg_user: 'postgres'
+pg_owner: 'postgres'
+pg_password: ''
+database: 'my_palm_gem_lod00'
+srid_input: 32633
+srid_palm: 32633
+
+input_schema: 'legerova_parent'
+
+domain:
+    name: 'legerova_parent_512_4'
+    scenario: ''
+    parent_domain_schema: ''
+    dx: 4.0   # resolution in x direction
+    dy: 4.0   # resolution in y direction
+    dz: 4.0   # resolution in z direction
+    nx: 512    # number of gridcells in x direction
+    ny: 512    # number of gridcells in y direction
+    cent_x: 459220.0   # domain center, x coordinates in srid_palm
+    cent_y: 5546850.0  # domain center, y coordinates in srid_palm
+    
+origin_time: '2022-07-17 00:00:00'   # origin time of simulation
