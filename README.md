@@ -45,22 +45,22 @@ Instead, it serves as a collection of:
 
 The repository is organized according to the workflow presented in the user guide:
 
-static_driver/
-configuration files and scripts for PALM-GeM
+- **static_driver/**  
+  Configuration files and scripts for PALM-GeM
 
-emissions/
-scripts and configuration related to emission preprocessing (e.g. FUME)
+- **emissions/**  
+  Scripts and configuration related to emission preprocessing (e.g. FUME)
 
-transportation/
-scripts for traffic intensity and transport inputs
+- **transportation/**  
+  Scripts for traffic intensity and transport inputs
 
-post_processing/
-time_series_analysis/
-spatial_distributions/
-utilities/
+- **post_processing/**  
+  - **time_series_analysis/**  
+  - **spatial_distributions/**  
+  - **utilities/**  
 
-palm_configuration/
-sample YAML and configuration files
+- **palm_configuration/**  
+  Sample YAML and configuration files
 
 Each file is referenced in the guide where it is used.
 
