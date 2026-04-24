@@ -90,10 +90,6 @@ To use the files, clone the repository:
 git clone https://github.com/CHMI-AQ-modelling-department/palm-user-guide.git
 ```
 
----
-
-### Download a Single Configuration File
-
 In some cases, only a single configuration file is needed. For example, the
 PALM configuration file can be downloaded directly using:
 
