@@ -5,8 +5,8 @@ This repository provides supporting files referenced in the PALM User Guide:
 👉 https://github.com/CHMI-AQ-modelling-department/palm-user-guide
 
 The purpose of this repository is to ensure that all configuration files,
-scripts, and example inputs used in the guide are publicly available and
-accessible through stable links.
+scripts, example inputs, and documentation used in the guide are publicly
+available and accessible through stable links.
 
 ---
 
@@ -18,6 +18,7 @@ The PALM User Guide includes many practical examples such as:
 - preprocessing scripts
 - postprocessing scripts
 - example input datasets
+- documentation and supplementary materials
 
 Instead of embedding these files directly in the document, they are stored
 here and referenced via URLs. This approach ensures that:
@@ -37,13 +38,22 @@ Instead, it serves as a collection of:
 - example configuration files for PALM simulations
 - scripts used in preprocessing (e.g. static driver, emissions, transport)
 - scripts used in postprocessing (e.g. time series, spatial maps, performance)
-- auxiliary files required for running workflows described in the guide
+- user guide documents (PDF and LaTeX sources)
+- auxiliary files and suggested readings
 
 ---
 
 ## Repository Structure
 
 The repository is organized according to the workflow presented in the user guide:
+
+- **user_guide/**
+  - **pdf/**  
+    Final PDF version of the PALM User Guide
+  - **latex/**  
+    LaTeX source files of the user guide
+  - **miscellaneous/**  
+    Additional materials (e.g. suggested readings)
 
 - **static_driver/**  
   Configuration files and scripts for PALM-GeM
