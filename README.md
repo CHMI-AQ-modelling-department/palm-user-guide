@@ -80,11 +80,11 @@ Each file is referenced in the guide where it is used.
 
 Files in this repository are intended to be:
 
-- downloaded individually
 - adapted to the user’s own simulation setup
 - used together with the instructions provided in the user guide
+- referenced directly from the guide when needed
 
-Example:
+To use the files, clone the repository:
 
 ```bash
-wget https://raw.githubusercontent.com/CHMI-AQ-modelling-department/palm-user-guide/main/post_processing/time_series_analysis/default_config.yaml
+git clone https://github.com/CHMI-AQ-modelling-department/palm-user-guide.git
