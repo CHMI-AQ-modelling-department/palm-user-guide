@@ -88,3 +88,14 @@ To use the files, clone the repository:
 
 ```bash
 git clone https://github.com/CHMI-AQ-modelling-department/palm-user-guide.git
+```
+
+---
+
+### Download a Single Configuration File
+
+In some cases, only a single configuration file is needed. For example, the
+PALM configuration file can be downloaded directly using:
+
+```bash
+wget https://raw.githubusercontent.com/CHMI-AQ-modelling-department/palm-user-guide/a6dbf82b99eaffb92d099ca6eecaa6e4fdbf3f95/palm_configuration/.palm.config.default.ifx
